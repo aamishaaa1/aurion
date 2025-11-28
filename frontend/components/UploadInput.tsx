@@ -23,25 +23,27 @@ export default function UploadInput({ onUpload }: UploadInputProps) {
     }
   };
 
+  const tabStyle = (isActive: boolean) => ({
+    padding: '0.5rem 1.5rem',
+    borderRadius: '0.375rem',
+    border: 'none',
+    cursor: 'pointer',
+    background: isActive ? 'var(--primary)' : '#f3f4f6',
+    color: isActive ? 'white' : '#374151',
+    fontWeight: isActive ? '600' : '400',
+    transition: 'all 0.2s'
+  });
+
   return (
-    <div className="border rounded-lg p-6">
-      <div className="flex gap-2 mb-4">
-        <button
-          onClick={() => setActiveTab('text')}
-          className={`px-4 py-2 rounded ${activeTab === 'text' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
-        >
+    <div className="card">
+      <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+        <button onClick={() => setActiveTab('text')} style={tabStyle(activeTab === 'text')}>
           Text
         </button>
-        <button
-          onClick={() => setActiveTab('image')}
-          className={`px-4 py-2 rounded ${activeTab === 'image' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
-        >
+        <button onClick={() => setActiveTab('image')} style={tabStyle(activeTab === 'image')}>
           Image
         </button>
-        <button
-          onClick={() => setActiveTab('video')}
-          className={`px-4 py-2 rounded ${activeTab === 'video' ? 'bg-blue-600 text-white' : 'bg-gray-100'}`}
-        >
+        <button onClick={() => setActiveTab('video')} style={tabStyle(activeTab === 'video')}>
           Video
         </button>
       </div>
@@ -51,12 +53,23 @@ export default function UploadInput({ onUpload }: UploadInputProps) {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Enter text to verify..."
-            className="w-full h-32 p-3 border rounded mb-3"
+            placeholder="Enter text to verify for AI generation, factual accuracy, or manipulation..."
+            style={{
+              width: '100%',
+              minHeight: '150px',
+              padding: '0.75rem',
+              border: '1px solid var(--border)',
+              borderRadius: '0.375rem',
+              marginBottom: '1rem',
+              fontSize: '1rem',
+              fontFamily: 'inherit',
+              resize: 'vertical'
+            }}
           />
           <button
             onClick={handleTextSubmit}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+            className="btn btn-primary"
+            style={{ padding: '0.75rem 1.5rem' }}
           >
             Verify Text
           </button>
@@ -69,8 +82,19 @@ export default function UploadInput({ onUpload }: UploadInputProps) {
             type="file"
             accept={activeTab === 'image' ? 'image/*' : 'video/*'}
             onChange={handleFileChange}
-            className="w-full p-3 border rounded"
+            style={{
+              width: '100%',
+              padding: '0.75rem',
+              border: '2px dashed var(--border)',
+              borderRadius: '0.375rem',
+              cursor: 'pointer'
+            }}
           />
+          <p style={{ marginTop: '0.5rem', fontSize: '0.875rem', color: '#6b7280' }}>
+            {activeTab === 'image'
+              ? 'Deepfake detection, AI artifact analysis, manipulation markers'
+              : 'Temporal consistency, face swap detection, audio-visual sync'}
+          </p>
         </div>
       )}
     </div>

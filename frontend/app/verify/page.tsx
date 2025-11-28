@@ -50,16 +50,43 @@ export default function VerifyPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8">Verify Content</h1>
+    <div className="container" style={{ padding: '3rem 1rem' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+            🔬 Verify Content
+          </h1>
+          <p style={{ color: '#6b7280', marginBottom: '1rem', fontSize: '1.125rem' }}>
+            Multi-agent consensus verification powered by 5 independent AI models
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', fontSize: '0.875rem', color: '#6b7280' }}>
+            <span style={{ padding: '0.25rem 0.75rem', background: '#eff6ff', borderRadius: '9999px', color: '#1e40af' }}>Anthropic Claude</span>
+            <span style={{ padding: '0.25rem 0.75rem', background: '#f0fdf4', borderRadius: '9999px', color: '#166534' }}>Groq Llama</span>
+            <span style={{ padding: '0.25rem 0.75rem', background: '#fef3c7', borderRadius: '9999px', color: '#92400e' }}>Mistral</span>
+            <span style={{ padding: '0.25rem 0.75rem', background: '#fce7f3', borderRadius: '9999px', color: '#9f1239' }}>Google Gemini</span>
+            <span style={{ padding: '0.25rem 0.75rem', background: '#f3e8ff', borderRadius: '9999px', color: '#6b21a8' }}>xAI Grok</span>
+          </div>
+        </div>
 
-      <div className="max-w-4xl mx-auto space-y-8">
         <UploadInput onUpload={handleUpload} />
 
         {loading && (
-          <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <p className="mt-4 text-gray-600">Analyzing with multi-agent consensus...</p>
+          <div style={{ textAlign: 'center', padding: '3rem 0' }}>
+            <div style={{
+              display: 'inline-block',
+              width: '48px',
+              height: '48px',
+              border: '4px solid #e5e7eb',
+              borderTopColor: '#3b82f6',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }}></div>
+            <p style={{ marginTop: '1rem', color: '#6b7280', fontWeight: '600' }}>
+              Analyzing with multi-agent consensus...
+            </p>
+            <p style={{ marginTop: '0.5rem', color: '#9ca3af', fontSize: '0.875rem' }}>
+              Anthropic • Groq • Mistral • Google • xAI
+            </p>
           </div>
         )}
 
@@ -67,30 +94,50 @@ export default function VerifyPage() {
           <>
             <VerificationResult result={result} />
 
-            <div className="flex gap-4">
+            <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}>
               <button
                 onClick={handlePublish}
-                className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700"
+                className="btn"
+                style={{
+                  background: 'var(--success)',
+                  color: 'white',
+                  padding: '0.75rem 1.5rem',
+                  fontSize: '1rem'
+                }}
               >
                 Publish to DKG
               </button>
             </div>
 
             {published && (
-              <div className="border rounded-lg p-6 bg-green-50">
-                <h3 className="text-xl font-bold mb-2">Published Successfully</h3>
-                <p className="text-sm text-gray-700">UAL: {published.UAL}</p>
+              <div className="card" style={{
+                background: '#d1fae5',
+                borderColor: '#10b981',
+                marginTop: '1.5rem'
+              }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '0.5rem', color: '#065f46' }}>
+                  Published Successfully
+                </h3>
+                <p style={{ fontSize: '0.875rem', color: '#047857', marginBottom: '0.5rem' }}>
+                  UAL: {published.UAL}
+                </p>
                 <a
                   href={`/asset/${encodeURIComponent(published.UAL)}`}
-                  className="text-blue-600 hover:underline"
+                  style={{ color: '#3b82f6', textDecoration: 'underline' }}
                 >
-                  View Asset →
+                  View Asset on DKG
                 </a>
               </div>
             )}
           </>
         )}
       </div>
+
+      <style jsx>{`
+        @keyframes spin {
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </div>
   );
 }

@@ -12,21 +12,32 @@ interface ProvenanceTimelineProps {
 
 export default function ProvenanceTimeline({ steps }: ProvenanceTimelineProps) {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {steps.map((step, idx) => (
-        <div key={idx} className="flex gap-4">
-          <div className="flex flex-col items-center">
-            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-sm font-bold">
+        <div key={idx} style={{ display: 'flex', gap: '1rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <div style={{
+              width: '2rem',
+              height: '2rem',
+              borderRadius: '50%',
+              background: '#3b82f6',
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.875rem',
+              fontWeight: 'bold'
+            }}>
               {step.step}
             </div>
             {idx < steps.length - 1 && (
-              <div className="w-0.5 h-12 bg-blue-200"></div>
+              <div style={{ width: '0.125rem', height: '3rem', background: '#bfdbfe' }}></div>
             )}
           </div>
-          <div className="flex-1 pb-8">
-            <p className="font-semibold capitalize">{step.agent}</p>
-            <p className="text-sm text-gray-600">{step.action}</p>
-            <p className="text-xs text-gray-400">
+          <div style={{ flex: 1, paddingBottom: '2rem' }}>
+            <p style={{ fontWeight: '600', textTransform: 'capitalize' }}>{step.agent}</p>
+            <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>{step.action}</p>
+            <p style={{ fontSize: '0.75rem', color: '#9ca3af' }}>
               {new Date(step.timestamp).toLocaleString()}
             </p>
           </div>

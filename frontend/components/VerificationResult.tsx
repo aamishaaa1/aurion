@@ -9,55 +9,110 @@ export default function VerificationResult({ result }: VerificationResultProps) 
 
   const { consensus, assessments, provenance } = result;
 
+  const getVerdictColor = (verdict: string) => {
+    if (verdict.includes('HIGH')) return 'var(--success)';
+    if (verdict.includes('MODERATE')) return 'var(--warning)';
+    return 'var(--danger)';
+  };
+
+  const getVerdictEmoji = (verdict: string) => {
+    if (verdict.includes('HIGH')) return '✅';
+    if (verdict.includes('MODERATE')) return '⚠️';
+    return '❌';
+  };
+
+  const agentLabels: Record<string, string> = {
+    anthropic: 'Anthropic',
+    groq: 'Groq',
+    mistral: 'Mistral',
+    google: 'Google',
+    xai: 'xAI'
+  };
+
   return (
-    <div className="space-y-6">
-      <div className="border rounded-lg p-6 bg-white">
-        <h3 className="text-2xl font-bold mb-4">Consensus Results</h3>
-        <div className="grid grid-cols-2 gap-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginTop: '2rem' }}>
+      <div className="card" style={{ background: 'var(--card)' }}>
+        <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem' }}>
+          Consensus Results
+        </h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
           <div>
-            <p className="text-gray-600">Confidence</p>
-            <p className="text-3xl font-bold text-blue-600">{consensus.confidence}%</p>
+            <p style={{ color: '#6b7280', marginBottom: '0.5rem' }}>Confidence Score</p>
+            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--primary)' }}>
+              {consensus.confidence}%
+            </p>
           </div>
           <div>
-            <p className="text-gray-600">Agreement</p>
-            <p className="text-3xl font-bold text-green-600">{consensus.agreement}%</p>
+            <p style={{ color: '#6b7280', marginBottom: '0.5rem' }}>Agent Agreement</p>
+            <p style={{ fontSize: '2.5rem', fontWeight: 'bold', color: 'var(--success)' }}>
+              {consensus.agreement}%
+            </p>
           </div>
         </div>
-        <div className="mt-4">
-          <p className="text-gray-600">Final Verdict</p>
-          <p className="text-xl font-semibold">{consensus.finalVerdict}</p>
+        <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'var(--background)', borderRadius: '0.375rem' }}>
+          <p style={{ color: '#6b7280', marginBottom: '0.5rem' }}>Final Verdict</p>
+          <p style={{ fontSize: '1.5rem', fontWeight: '600', color: getVerdictColor(consensus.finalVerdict) }}>
+            {getVerdictEmoji(consensus.finalVerdict)} {consensus.finalVerdict}
+          </p>
         </div>
       </div>
 
-      <div className="border rounded-lg p-6 bg-white">
-        <h3 className="text-xl font-bold mb-4">Agent Assessments</h3>
-        <div className="space-y-3">
-          {assessments.map((assessment: any, idx: number) => (
-            <div key={idx} className="border-l-4 border-blue-500 pl-4">
-              <p className="font-semibold capitalize">{assessment.provider}</p>
-              <div className="text-sm text-gray-600">
-                {Object.entries(assessment)
-                  .filter(([key, value]) => typeof value === 'number')
-                  .map(([key, value]) => (
-                    <span key={key} className="mr-4">
-                      {key}: {value}%
-                    </span>
-                  ))}
+      <div className="card">
+        <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+          Multi-Agent Assessments
+        </h3>
+        <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+          Independent analysis from 5 AI providers
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {assessments.map((assessment: any, idx: number) => {
+            return (
+              <div
+                key={idx}
+                style={{
+                  borderLeft: '4px solid var(--primary)',
+                  paddingLeft: '1rem',
+                  background: 'var(--card)',
+                  padding: '1rem',
+                  borderRadius: '0.375rem'
+                }}
+              >
+                <p style={{ fontWeight: '600', textTransform: 'capitalize', marginBottom: '0.5rem' }}>
+                  {agentLabels[assessment.provider.toLowerCase()] || assessment.provider}
+                </p>
+                <div style={{ fontSize: '0.875rem', color: '#6b7280', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+                  {Object.entries(assessment)
+                    .filter(([, value]) => typeof value === 'number')
+                    .map(([metricKey, metricValue]) => (
+                      <span key={metricKey}>
+                        <strong>{metricKey}:</strong> {String(metricValue)}%
+                      </span>
+                    ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
       {provenance && (
-        <div className="border rounded-lg p-6 bg-white">
-          <h3 className="text-xl font-bold mb-4">Provenance Chain</h3>
-          <p className="text-sm text-gray-600 mb-2">
-            Hash: {provenance.contentHash?.substring(0, 32)}...
-          </p>
-          <p className="text-sm text-gray-600">
-            Agents: {provenance.agentCount} | Consensus: {provenance.consensusReached ? 'Yes' : 'No'}
-          </p>
+        <div className="card" style={{ background: '#f0f9ff' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+            Provenance Chain
+          </h3>
+          <div style={{ fontSize: '0.875rem', color: '#374151' }}>
+            <p style={{ marginBottom: '0.5rem' }}>
+              <strong>Content Hash:</strong> <code style={{ background: '#e5e7eb', padding: '0.25rem 0.5rem', borderRadius: '0.25rem' }}>
+                {provenance.contentHash?.substring(0, 40)}...
+              </code>
+            </p>
+            <p style={{ marginBottom: '0.5rem' }}>
+              <strong>Agents Participated:</strong> {provenance.agentCount}
+            </p>
+            <p>
+              <strong>Consensus Reached:</strong> {provenance.consensusReached ? 'Yes' : 'No'}
+            </p>
+          </div>
         </div>
       )}
     </div>

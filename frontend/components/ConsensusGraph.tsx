@@ -10,45 +10,60 @@ interface ConsensusGraphProps {
 
 export default function ConsensusGraph({ consensus }: ConsensusGraphProps) {
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <div>
-        <div className="flex justify-between mb-1">
-          <span className="text-sm font-medium">Confidence</span>
-          <span className="text-sm font-bold">{consensus.confidence}%</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+          <span style={{ fontSize: '0.875rem', fontWeight: '500' }}>Confidence</span>
+          <span style={{ fontSize: '0.875rem', fontWeight: 'bold' }}>{consensus.confidence}%</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div style={{ width: '100%', background: '#e5e7eb', borderRadius: '9999px', height: '0.5rem' }}>
           <div
-            className="bg-blue-600 h-2 rounded-full"
-            style={{ width: `${consensus.confidence}%` }}
+            style={{
+              background: '#3b82f6',
+              height: '0.5rem',
+              borderRadius: '9999px',
+              width: `${consensus.confidence}%`,
+              transition: 'width 0.3s ease'
+            }}
           ></div>
         </div>
       </div>
 
       <div>
-        <div className="flex justify-between mb-1">
-          <span className="text-sm font-medium">Agreement</span>
-          <span className="text-sm font-bold">{consensus.agreement}%</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+          <span style={{ fontSize: '0.875rem', fontWeight: '500' }}>Agreement</span>
+          <span style={{ fontSize: '0.875rem', fontWeight: 'bold' }}>{consensus.agreement}%</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div style={{ width: '100%', background: '#e5e7eb', borderRadius: '9999px', height: '0.5rem' }}>
           <div
-            className="bg-green-600 h-2 rounded-full"
-            style={{ width: `${consensus.agreement}%` }}
+            style={{
+              background: '#10b981',
+              height: '0.5rem',
+              borderRadius: '9999px',
+              width: `${consensus.agreement}%`,
+              transition: 'width 0.3s ease'
+            }}
           ></div>
         </div>
       </div>
 
       {Object.entries(consensus.averageScores).map(([key, value]) => (
         <div key={key}>
-          <div className="flex justify-between mb-1">
-            <span className="text-sm font-medium capitalize">
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.25rem' }}>
+            <span style={{ fontSize: '0.875rem', fontWeight: '500', textTransform: 'capitalize' }}>
               {key.replace(/([A-Z])/g, ' $1').trim()}
             </span>
-            <span className="text-sm font-bold">{value}%</span>
+            <span style={{ fontSize: '0.875rem', fontWeight: 'bold' }}>{value}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div style={{ width: '100%', background: '#e5e7eb', borderRadius: '9999px', height: '0.5rem' }}>
             <div
-              className="bg-purple-600 h-2 rounded-full"
-              style={{ width: `${value}%` }}
+              style={{
+                background: '#8b5cf6',
+                height: '0.5rem',
+                borderRadius: '9999px',
+                width: `${value}%`,
+                transition: 'width 0.3s ease'
+              }}
             ></div>
           </div>
         </div>

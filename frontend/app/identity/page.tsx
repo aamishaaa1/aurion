@@ -12,7 +12,7 @@ export default function IdentityPage() {
     setIdentity(null);
 
     try {
-      // Mock identity lookup
+      // Mock identity lookup - in production, this would call the backend API
       const mockIdentity = {
         address,
         displayName: 'Demo User',
@@ -34,12 +34,23 @@ export default function IdentityPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <h1 className="text-4xl font-bold mb-8">Polkadot Identity Lookup</h1>
+    <div className="container" style={{ padding: '3rem 1rem' }}>
+      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+            ⛓️ Polkadot Identity Lookup
+          </h1>
+          <p style={{ color: '#6b7280', marginBottom: '1rem', fontSize: '1.125rem' }}>
+            Verify on-chain identity and reputation for content creators
+          </p>
+          <div style={{ display: 'inline-flex', gap: '0.5rem', padding: '0.5rem 1rem', background: '#fef3c7', borderRadius: '0.5rem', fontSize: '0.875rem', color: '#92400e' }}>
+            <span>🔐</span>
+            <span>Accountability • Reputation • Trust</span>
+          </div>
+        </div>
 
-      <div className="max-w-2xl mx-auto space-y-6">
-        <div className="border rounded-lg p-6">
-          <label className="block text-sm font-semibold mb-2">
+        <div className="card">
+          <label style={{ display: 'block', fontSize: '0.875rem', fontWeight: '600', marginBottom: '0.5rem' }}>
             Polkadot Address
           </label>
           <input
@@ -47,44 +58,54 @@ export default function IdentityPage() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY"
-            className="w-full p-3 border rounded mb-3"
+            style={{
+              width: '100%',
+              padding: '0.75rem',
+              border: '1px solid var(--border)',
+              borderRadius: '0.375rem',
+              marginBottom: '1rem',
+              fontSize: '1rem'
+            }}
           />
           <button
             onClick={handleLookup}
             disabled={loading || !address}
-            className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+            className="btn btn-primary"
+            style={{ padding: '0.75rem 1.5rem', opacity: (loading || !address) ? 0.5 : 1 }}
           >
             {loading ? 'Looking up...' : 'Lookup Identity'}
           </button>
         </div>
 
         {identity && (
-          <div className="border rounded-lg p-6 bg-white">
-            <h3 className="text-xl font-bold mb-4">Identity Information</h3>
-            <div className="space-y-3">
+          <div className="card" style={{ marginTop: '1.5rem' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem' }}>
+              Identity Information
+            </h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
-                <p className="text-sm text-gray-600">Display Name</p>
-                <p className="font-semibold">{identity.displayName || 'N/A'}</p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Display Name</p>
+                <p style={{ fontWeight: '600' }}>{identity.displayName || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Legal Name</p>
-                <p className="font-semibold">{identity.legal || 'N/A'}</p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Legal Name</p>
+                <p style={{ fontWeight: '600' }}>{identity.legal || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Website</p>
-                <p className="font-semibold">{identity.web || 'N/A'}</p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Website</p>
+                <p style={{ fontWeight: '600' }}>{identity.web || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Twitter</p>
-                <p className="font-semibold">{identity.twitter || 'N/A'}</p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Twitter</p>
+                <p style={{ fontWeight: '600' }}>{identity.twitter || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Email</p>
-                <p className="font-semibold">{identity.email || 'N/A'}</p>
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Email</p>
+                <p style={{ fontWeight: '600' }}>{identity.email || 'N/A'}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600">Judgements</p>
-                <p className="font-semibold">
+                <p style={{ fontSize: '0.875rem', color: '#6b7280' }}>Judgements</p>
+                <p style={{ fontWeight: '600' }}>
                   {identity.judgements?.length || 0} judgement(s)
                 </p>
               </div>

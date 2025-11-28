@@ -196,26 +196,6 @@ pnpm aurion query <UAL>
 - **/frontend** - Next.js 15 App Router UI
 - **/docs** - Complete documentation
 
-## 🎬 Demo Script (5 Minutes)
-
-### Minute 1: Introduction
-"Aurion is a Collective Digital Immune System that verifies AI content using multi-agent consensus and publishes verifiable proofs to OriginTrail DKG."
-
-### Minute 2: Text Verification
-```bash
-pnpm aurion verify-text "Breaking: Major event happened today"
-```
-Show: Multi-agent consensus, truth score, provenance chain
-
-### Minute 3: Image Deepfake Detection
-Upload suspicious image → Show deepfake risk score → Publish to DKG
-
-### Minute 4: DKG Integration
-Show published Knowledge Asset with UAL → Query from DKG → Verify signature
-
-### Minute 5: Trust Layer
-Show Polkadot identity link → x402 micropayment → Reputation score
-
 ## Technology Stack
 
 - **OriginTrail DKG**: Decentralized Knowledge Graph
@@ -227,34 +207,7 @@ Show Polkadot identity link → x402 micropayment → Reputation score
 - **TypeScript**: Type-safe development
 - **Tailwind + shadcn/ui**: UI components
 
-## Documentation
-
-See `/docs` folder for detailed documentation:
-- ARCHITECTURE.md
-- AGENT_FLOW.md
-- KNOWLEDGE_ASSETS.md
-- TRUST_LAYER.md
-- DKG_INTEGRATION.md
-- POLKADOT_IDENTITY.md
-- X402.md
-- DEMO_SCRIPT.md
-
-## Hackathon Requirements
-
-- Uses OriginTrail DKG Edge Node
-- Implements all 3 layers: Agent, Knowledge, Trust
-- Publishes verifiable JSON-LD Knowledge Assets
-- Integrates MCP (Model Context Protocol)
-- Integrates x402 micropayments
-- Integrates Polkadot.js identity
-- Compatible with NeuroWeb
-- All new code for hackathon
-- Includes backend + CLI + frontend
 
 ## License
 
 MIT
-
-## Contributing
-
-Built for OriginTrail / Polkadot / Umanitek Hackathon 2025

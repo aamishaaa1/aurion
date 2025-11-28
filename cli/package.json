@@ -1,0 +1,20 @@
+{
+  "name": "@aurion/cli",
+  "version": "1.0.0",
+  "bin": {
+    "aurion": "./bin/aurion.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,8 @@
+packages:
+  - 'backend'
+  - 'agent'
+  - 'knowledge'
+  - 'trust'
+  - 'dkg'
+  - 'cli'
+  - 'frontend'

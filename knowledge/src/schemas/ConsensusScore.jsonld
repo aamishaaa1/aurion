@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aurion": "https://aurion.ai/ontology/"
+  },
+  "@type": "aurion:ConsensusScore",
+  "name": "Consensus Score Schema",
+  "description": "Multi-agent consensus scoring schema",
+  "properties": {
+    "agreement": {
+      "@type": "Number",
+      "description": "Agreement level between agents (0-100)"
+    },
+    "confidence": {
+      "@type": "Number",
+      "description": "Overall confidence score (0-100)"
+    },
+    "averageScores": {
+      "@type": "Object",
+      "description": "Average scores across all metrics"
+    },
+    "outliers": {
+      "@type": "Array",
+      "description": "List of outlier agents"
+    },
+    "finalVerdict": {
+      "@type": "Text",
+      "description": "Final consensus verdict"
+    }
+  }
+}

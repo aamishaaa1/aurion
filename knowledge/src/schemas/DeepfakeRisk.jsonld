@@ -1,0 +1,39 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aurion": "https://aurion.ai/ontology/"
+  },
+  "@type": "aurion:DeepfakeRisk",
+  "name": "Deepfake Risk Assessment Schema",
+  "description": "Schema for deepfake and AI manipulation detection",
+  "properties": {
+    "contentHash": {
+      "@type": "Text",
+      "description": "SHA-256 hash of media content"
+    },
+    "deepfakeRisk": {
+      "@type": "Number",
+      "description": "Deepfake likelihood (0-100)"
+    },
+    "aiGenerated": {
+      "@type": "Number",
+      "description": "AI generation probability (0-100)"
+    },
+    "manipulationScore": {
+      "@type": "Number",
+      "description": "Content manipulation score (0-100)"
+    },
+    "authenticityScore": {
+      "@type": "Number",
+      "description": "Content authenticity score (0-100)"
+    },
+    "detectionMethod": {
+      "@type": "Text",
+      "description": "Detection method used"
+    },
+    "timestamp": {
+      "@type": "DateTime",
+      "description": "Analysis timestamp"
+    }
+  }
+}

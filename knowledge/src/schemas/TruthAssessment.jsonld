@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aurion": "https://aurion.ai/ontology/",
+    "dkg": "https://dkg.origintrail.io/ontology/"
+  },
+  "@type": "aurion:TruthAssessment",
+  "name": "Truth Assessment Schema",
+  "description": "Schema for AI-verified content truth assessment",
+  "properties": {
+    "contentHash": {
+      "@type": "Text",
+      "description": "SHA-256 hash of verified content"
+    },
+    "consensusScore": {
+      "@type": "Number",
+      "description": "Multi-agent consensus score (0-100)"
+    },
+    "aiGeneratedProbability": {
+      "@type": "Number",
+      "description": "Likelihood content is AI-generated (0-100)"
+    },
+    "factualScore": {
+      "@type": "Number",
+      "description": "Factual accuracy score (0-100)"
+    },
+    "misinformationRisk": {
+      "@type": "Number",
+      "description": "Risk of misinformation (0-100)"
+    },
+    "verificationTimestamp": {
+      "@type": "DateTime",
+      "description": "ISO 8601 timestamp of verification"
+    },
+    "agentCount": {
+      "@type": "Number",
+      "description": "Number of AI agents in consensus"
+    },
+    "provenanceChain": {
+      "@type": "aurion:ProvenanceChain",
+      "description": "Linked provenance chain"
+    }
+  }
+}

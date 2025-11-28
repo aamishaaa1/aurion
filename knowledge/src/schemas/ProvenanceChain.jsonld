@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aurion": "https://aurion.ai/ontology/"
+  },
+  "@type": "aurion:ProvenanceChain",
+  "name": "Provenance Chain Schema",
+  "description": "Schema for content verification provenance",
+  "properties": {
+    "contentHash": {
+      "@type": "Text",
+      "description": "SHA-256 hash of original content"
+    },
+    "timestamp": {
+      "@type": "DateTime",
+      "description": "Chain creation timestamp"
+    },
+    "verificationSteps": {
+      "@type": "Array",
+      "description": "Ordered list of verification steps"
+    },
+    "agentCount": {
+      "@type": "Number",
+      "description": "Number of agents in chain"
+    },
+    "consensusReached": {
+      "@type": "Boolean",
+      "description": "Whether consensus was reached"
+    }
+  }
+}

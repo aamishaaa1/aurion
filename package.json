@@ -1,0 +1,19 @@
+{
+  "name": "aurion",
+  "version": "1.0.0",
+  "description": "Collective Digital Immune System for AI - Scaling Trust in the Age of AI",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --parallel --filter backend --filter frontend dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "clean": "pnpm -r clean"
+  },
+  "keywords": ["origintrail", "dkg", "polkadot", "neuroweb", "ai", "verification", "mcp", "x402"],
+  "author": "Aurion Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}

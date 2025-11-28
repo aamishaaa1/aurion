@@ -1,0 +1,44 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aurion": "https://aurion.ai/ontology/",
+    "polkadot": "https://polkadot.network/ontology/"
+  },
+  "@type": "aurion:PolkadotIdentityLink",
+  "name": "Polkadot Identity Link Schema",
+  "description": "Schema linking content to Polkadot identity",
+  "properties": {
+    "address": {
+      "@type": "Text",
+      "description": "Polkadot account address"
+    },
+    "displayName": {
+      "@type": "Text",
+      "description": "Identity display name"
+    },
+    "legal": {
+      "@type": "Text",
+      "description": "Legal name"
+    },
+    "web": {
+      "@type": "URL",
+      "description": "Web URL"
+    },
+    "twitter": {
+      "@type": "Text",
+      "description": "Twitter handle"
+    },
+    "email": {
+      "@type": "Text",
+      "description": "Email address"
+    },
+    "judgements": {
+      "@type": "Array",
+      "description": "Identity judgements"
+    },
+    "verificationTimestamp": {
+      "@type": "DateTime",
+      "description": "Identity verification timestamp"
+    }
+  }
+}

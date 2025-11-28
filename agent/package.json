@@ -1,0 +1,20 @@
+{
+  "name": "@aurion/agent",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.20.0",
+    "groq-sdk": "^0.3.3",
+    "@mistralai/mistralai": "^0.1.3",
+    "@google/generative-ai": "^0.2.1",
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.3"
+  }
+}
